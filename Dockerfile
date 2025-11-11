@@ -6,7 +6,6 @@ RUN apt-get update && \
   golang nodejs npm jq file wget && \
   rm -rf /var/lib/apt/lists/*
 
-# Use build arg for architecture detection
 ARG TARGETARCH=arm64
 ARG OPENCODE_VERSION=1.0.57
 
