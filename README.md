@@ -25,25 +25,14 @@ files. These files will be mounted into the container at runtime.
 
 ## Running
 
-```
-docker run \
-  -e GITHUB_TOKEN=$GITHUB_TOKEN \
-  -v ~/.local/share/opencode:/root/.local/share/opencode \
-  -v ~/.local/share/opentui:/root/.local/share/opentui \
-  -v ~/.config/opencode:/root/.config/opencode \
-  -v ~/.local/state/opencode:/root/.local/state/opencode \
-  -v "${PWD}":/opt \
-  -it \
-  --rm \
-  ocd
-```
-
-## Add `ocd` shortcut to your `.bashrc`
+Add `ocd` shortcut to your `.bashrc`
 
 ```
-alias ocd="docker run \
+alias ocd="mkdir -p ~/.local/share/opencode-docker-cache || true && \
+  cp ~/.local/share/opencode/auth.json ~/.local/share/opencode-docker-cache && \
+  docker run \
   -e GITHUB_TOKEN=$GITHUB_TOKEN \
-  -v ~/.local/share/opencode:/root/.local/share/opencode \
+  -v ~/.local/share/opencode-docker-cache:/root/.local/share/opencode \
   -v ~/.local/share/opentui:/root/.local/share/opentui \
   -v ~/.config/opencode:/root/.config/opencode \
   -v ~/.local/state/opencode:/root/.local/state/opencode \
